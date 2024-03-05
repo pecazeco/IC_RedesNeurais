@@ -13,7 +13,7 @@ from Node_Net_File import Node_Shape_Function_Net
 
 
 class HiDeNN_for_FEM():
-    def __init__(self, dom, num_nodes, equation, boundary_conditions=[0,0], optimizer=torch.optim.SGD):
+    def __init__(self, dom, num_nodes, equation, boundary_conditions=[0,0]):
         '''
         dom: 
         '''
@@ -33,18 +33,17 @@ class HiDeNN_for_FEM():
         self.b = equation[2]
         self.f_func = lambda x_v: list(map(equation[3], x_v))
         
-        self.node_nets_arr = self.node_nets_func( u_arr=[1 for i in range(num_nodes)] )
-        self.shape_func_arr = [func_net.forward(dom) for func_net in self.node_nets_arr]
-        self.shape_func_arr = torch.stack(self.shape_func_arr).detach().numpy().reshape(num_nodes, -1)
+        self.shape_func_arr = self.node_nets_func( u_arr=[1 for i in range(num_nodes)] )
+        # self.shape_func_arr = torch.stack(self.shape_func_arr).detach().numpy().reshape(num_nodes, -1)
         
         #### Calculating initial F and K for initial u's #### 
         
-        self.__F = [integrate(shape*self.f_func(dom), dx=self.dx) for shape in self.shape_func_arr[1:-1]]
+        self.__F = [integrate(shape*self.f_func(dom), dx=self.dx) for shape in self.shape_func_arr.numpy()[1:-1]]
         self.__K = np.zeros((num_nodes, num_nodes))
         for i,func_i in enumerate(self.shape_func_arr):
             for j,func_j in enumerate(self.shape_func_arr):
-                df_i = diff(func_i)/self.dx
-                df_j = diff(func_j)/self.dx
+                df_i = tensor(diff(func_i)/self.dx)
+                df_j = tensor(diff(func_j)/self.dx)
                 integrand = self.k * ( df_i * df_j ) + self.c * ( df_i * func_j[1:] ) + self.b * ( func_i[1:] * func_j[1:] )
                 self.__K[i, j] = integrate(integrand, dx=self.dx).reshape(-1)
 
@@ -57,66 +56,63 @@ class HiDeNN_for_FEM():
         self.__K[-1,-1] = BigNumber
         
         ### Calculating initial displacements and aprox u ### 
-        self.displacement_arr = np.array(inv(self.__K) @ self.__F) # alpha = K^-1 x F
+        self.displacement_arr = tensor(inv(self.__K) @ self.__F) # alpha = K^-1 x F
         self.u_aprox_arr = self.displacement_arr @ self.shape_func_arr
-            
-        for i,node in enumerate(self.node_nets_arr):
-            node.u = tensor([[self.displacement_arr[i]]], dtype=torch.float64)
-            node.update_layers()
         
-        self.optimizer = optimizer([self.nodes], lr=1e-3)
+        self.node_nets_arr = self.node_nets_func( self.displacement_arr )    
         
     def forward(self):
-        self.update_node_nets()
-        out_hidden_layers = [node_net.forward(self.dom) for node_net in self.node_nets_arr]
+        self.node_nets_arr = self.node_nets_func( self.displacement_arr )
+        self.shape_func_arr = self.node_nets_func([1 for i in range(self.num_nodes)])
         
         output_layer = nn.Linear(self.num_nodes, 1, bias=False)
         output_layer.weight = nn.Parameter(torch.ones_like(output_layer.weight, dtype=torch.float64))
         output_layer.requires_grad_(False)
         
-        self.u_aprox_arr = output_layer(torch.cat(out_hidden_layers, 1))
-        self.u_aprox_arr = self.u_aprox_arr.numpy().reshape(-1)
+        self.u_aprox_arr = output_layer(torch.transpose(self.node_nets_arr, 0, 1))
         return self.u_aprox_arr
     
     def node_nets_func(self,u_arr):
-            arr = [
-                Node_Shape_Function_Net(
-                    self.nodes[i-1], 
-                    self.nodes[i], 
-                    self.nodes[i+1], 
-                    u_arr[i]
-                ) for i in range(1,self.num_nodes-1)
-            ]
-            arr.insert(0,
-                Node_Shape_Function_Net(
+            shape_tensor = tensor([])
+            
+            for i in range(1, self.num_nodes-1):
+                t = Node_Shape_Function_Net(
+                        self.nodes[i-1], 
+                        self.nodes[i], 
+                        self.nodes[i+1], 
+                        u_arr[i]
+                    ).forward(self.dom).reshape(1, -1)
+                shape_tensor = torch.cat((shape_tensor, t), 0)
+                
+            t = Node_Shape_Function_Net(
                     None,
                     self.nodes[0],
                     self.nodes[1],
                     u_arr[0]
-                )
-            )
-            arr.append(
-                Node_Shape_Function_Net(
+                ).forward(self.dom).reshape(1, -1)
+            shape_tensor = torch.cat((t, shape_tensor), 0)
+
+            t = Node_Shape_Function_Net(
                     self.nodes[-2],
                     self.nodes[-1],
                     None,
                     u_arr[-1]
-                )
-            )
-            return np.array(arr)
+                ).forward(self.dom).reshape(1, -1)
+            shape_tensor = torch.cat((shape_tensor, t), 0)
+            
+            return shape_tensor
      
     def update_node_nets(self):
         self.node_nets_arr = self.node_nets_func( self.displacement_arr )
-        self.shape_func_arr = [func_net.forward(self.dom) for func_net in self.node_nets_arr]
-        self.shape_func_arr = torch.stack(self.shape_func_arr).detach().numpy().reshape(self.num_nodes, -1)
+        self.shape_func_arr = self.node_nets_func( [1 for i in range(self.num_nodes)] )
     
     @property
     def K(self):
         self.__K = np.zeros((self.num_nodes, self.num_nodes))
         for i,func_i in enumerate(self.shape_func_arr):
             for j,func_j in enumerate(self.shape_func_arr):
-                df_i = diff(func_i)/self.dx
-                df_j = diff(func_j)/self.dx
+                df_i = tensor(diff(func_i)/self.dx)
+                df_j = tensor(diff(func_j)/self.dx)
                 integrand = self.k * ( df_i * df_j ) + self.c * ( df_i * func_j[1:] ) + self.b * ( func_i[1:] * func_j[1:] )
                 self.__K[i, j] = integrate(integrand, dx=self.dx).reshape(-1)
 
@@ -127,7 +123,7 @@ class HiDeNN_for_FEM():
     
     @property
     def F(self):
-        self.__F = [integrate( shape * self.f_func(self.dom), dx=self.dx ) for shape in self.shape_func_arr[1:-1]]
+        self.__F = [integrate( shape * tensor(self.f_func(self.dom)), dx=self.dx ) for shape in self.shape_func_arr[1:-1]]
 
         BigNumber = 10e64
         self.__F = np.append( BigNumber * self.u_1 , self.__F )
@@ -154,38 +150,40 @@ class HiDeNN_for_FEM():
         figure = plt.grid()
         figure = plt.legend()
         #return figure
-
-    def train(self, epochs=1, lossfunc=nn.MSELoss, lr=1e-3):
-        
-        for g in self.optimizer.param_groups:
-            g['lr'] = lr
-        lossfunc = lossfunc()
-        
+    
+    def train(self, epochs=1, lossfunc=nn.MSELoss(), lr=1e-3):        
         for epoch in range(epochs):
             # -k * u''(x) + c * u'(x) + b * u(x) = f(x)
-            dudx = diff(self.forward())/self.dx
-            ddudx2 = diff(dudx)/self.dx
-            u = self.forward()
+            u = self.forward().reshape(-1)
+            # print('u', u)   
+            
+            dudx = torch.zeros(len(self.dom)-1)
+            for i in range(len(self.dom)-1):
+                dudx[i] = (u[i+1]-u[i]) / self.dx
+            # print('dudx', dudx)
+            
+            ddudx2 = torch.zeros(len(self.dom)-2)
+            for i in range(self.num_nodes-2):
+                ddudx2[i] = (dudx[i+1]-dudx[i]) / self.dx
+            # print('ddudx2', ddudx2)
+            
+            self.optimizer = torch.optim.SGD([self.nodes], lr=lr)
             self.optimizer.zero_grad()
             loss = lossfunc( 
-                            tensor(-self.k * ddudx2 + self.c * dudx[1:] + self.b * u[2:], requires_grad=True, dtype=torch.float64), 
-                            tensor(self.f_func(self.dom)[2:], dtype=torch.float64) 
+                            ( -self.k * ddudx2 + self.c * dudx[1:] + self.b * u[2:] - tensor(self.f_func(self.dom[2:])) ).requires_grad_(True), 
+                            tensor([[0]], dtype=torch.float64)
                             )
-            loss.backward()
+            loss.backward(retain_graph=True)
             self.optimizer.step()
             
-            self.shape_func_arr = [func_net.forward(self.dom) for func_net in self.node_nets_arr]
-            self.shape_func_arr = torch.stack(self.shape_func_arr).detach().numpy().reshape(self.num_nodes, -1)
+            self.shape_func_arr = self.node_nets_func([1 for i in range(self.num_nodes)])
             
             ### Calculating initial displacements and aprox u ### 
-            self.displacement_arr = np.array(inv(self.K) @ self.F) # alpha = K^-1 x F
+            self.displacement_arr = tensor(inv(self.K) @ self.F) # alpha = K^-1 x F
             self.u_aprox_arr = self.displacement_arr @ self.shape_func_arr
             
-            for i,node in enumerate(self.node_nets_arr):
-                node.u = tensor([[self.displacement_arr[i]]], dtype=torch.float64)
-                node.x_current = self.nodes[i]
-                node.update_layers()
-
+            self.node_nets_arr = self.node_nets_func(self.displacement_arr)
+                
         return loss
     
         
