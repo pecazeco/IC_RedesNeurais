@@ -21,7 +21,7 @@ class HiDeNN_for_FEM():
         dom: 
         '''
         self.num_nodes = num_nodes
-        self.dom = dom
+        self.dom = tensor(dom, dtype=torch.float64).reshape(1,-1)
         self.dom_end = dom[-1]
         self.dom_start = dom[0]
         self.nodes = tensor(linspace(self.dom_start, self.dom_end, num_nodes), requires_grad=True)
@@ -36,8 +36,7 @@ class HiDeNN_for_FEM():
         self.b = equation[2]
         self.f_func = lambda x_v: list(map(equation[3], x_v))
         
-        self.shape_func_arr = self.node_nets_func( torch.ones((self.num_nodes,1)) )
-        # self.shape_func_arr = torch.stack(self.shape_func_arr).detach().numpy().reshape(num_nodes, -1)
+        self.shape_func_arr = self.node_nets_func( torch.ones((self.num_nodes,1), dtype=torch.float64) )
         
         #### Calculating initial F and K for initial u's #### 
         
@@ -70,7 +69,7 @@ class HiDeNN_for_FEM():
         
     def forward(self):
         self.node_nets_arr = self.node_nets_func( self.displacement_arr )
-        self.shape_func_arr = self.node_nets_func( torch.ones((self.num_nodes,1)) )
+        self.shape_func_arr = self.node_nets_func( torch.ones((self.num_nodes,1), dtype=torch.float64) )
         
         output_layer = nn.Linear(self.num_nodes, 1, bias=False)
         output_layer.weight = nn.Parameter(torch.ones_like(output_layer.weight, dtype=torch.float64))
@@ -81,14 +80,14 @@ class HiDeNN_for_FEM():
     
     def node_nets_func(self,u_arr):
             shape_tensor = tensor([])
-            
+            dom = self.dom.reshape(-1,1)
             for i in range(1, self.num_nodes-1):
                 t = Node_Shape_Function_Net(
                         self.nodes[i-1], 
                         self.nodes[i], 
                         self.nodes[i+1], 
                         u_arr[i]
-                    ).forward(self.dom).reshape(1, -1)
+                    ).forward(dom).reshape(1, -1)
                 shape_tensor = torch.cat((shape_tensor, t), 0)
                 
             t = Node_Shape_Function_Net(
@@ -96,7 +95,7 @@ class HiDeNN_for_FEM():
                     self.nodes[0],
                     self.nodes[1],
                     u_arr[0]
-                ).forward(self.dom).reshape(1, -1)
+                ).forward(dom).reshape(1, -1)
             shape_tensor = torch.cat((t, shape_tensor), 0)
 
             t = Node_Shape_Function_Net(
@@ -104,7 +103,7 @@ class HiDeNN_for_FEM():
                     self.nodes[-1],
                     None,
                     u_arr[-1]
-                ).forward(self.dom).reshape(1, -1)
+                ).forward(dom).reshape(1, -1)
             shape_tensor = torch.cat((shape_tensor, t), 0)
             
             return shape_tensor
@@ -149,13 +148,16 @@ class HiDeNN_for_FEM():
         plt.xticks(nodes)
         figure.suptitle('Shape Functions')
         for i,func in enumerate(self.shape_func_arr):
-            axs[i].plot(self.dom, func)
+            dom = self.dom.reshape(-1).detach().numpy()
+            func = func.detach().numpy()
+            axs[i].plot(dom, func)
             axs[i].grid()
         #return figure
     
     def plot_u_exact_vs_u_aprox(self, u_exact_arr):
         figure = plt.figure()
-        figure = plt.plot(self.dom, u_exact_arr, label='Solução exata')
+        dom = self.dom.reshape(-1).detach().numpy()
+        figure = plt.plot(dom, u_exact_arr, label='Solução exata')
         nodes = self.nodes.detach().numpy()
         figure = plt.plot(nodes, self.displacement_arr, 'o--', label=f'Aproximação com {self.num_elem} elementos')
         figure = plt.xticks(nodes)
@@ -167,7 +169,6 @@ class HiDeNN_for_FEM():
         for epoch in range(epochs):
             # -k * u''(x) + c * u'(x) + b * u(x) = f(x)
             u = self.forward().reshape(-1)
-            # print('u', u)   
             
             dudx = diff(u, self.dx)
             ddudx2 = diff(dudx, self.dx)
@@ -175,17 +176,16 @@ class HiDeNN_for_FEM():
             self.optimizer = torch.optim.SGD([self.nodes], lr=lr)
             self.optimizer.zero_grad()
             loss = lossfunc( 
-                            ( -self.k * ddudx2 + self.c * dudx[1:] + self.b * u[2:] - tensor(self.f_func(self.dom[2:])) ).requires_grad_(True), 
+                            ( -self.k * ddudx2 + self.c * dudx[1:] + self.b * u[2:] - tensor(self.f_func(self.dom[0,2:])) ).requires_grad_(True),
                             tensor([[0]], dtype=torch.float64)
                             )
             loss.backward(retain_graph=True)
             self.optimizer.step()
             
-            self.shape_func_arr = self.node_nets_func(tensor([[1 for i in range(self.num_nodes)]]))
+            self.shape_func_arr = self.node_nets_func(torch.ones((self.num_nodes,1), dtype=torch.float64))
             
             ### Calculating initial displacements and aprox u ### 
             self.displacement_arr = solve(self.K,self.F) # alpha = K^-1 x F
-            print('displac', type(self.displacement_arr))
             self.u_aprox_arr = self.displacement_arr @ self.shape_func_arr
             
             self.node_nets_arr = self.node_nets_func(self.displacement_arr)

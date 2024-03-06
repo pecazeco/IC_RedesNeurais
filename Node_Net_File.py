@@ -1,15 +1,14 @@
 import torch
 from torch import tensor
 from torch import nn
-import numpy as np
 
 class Node_Shape_Function_Net(nn.Module):
     def __init__(self, x_previous, x_current, x_later, u_i): 
         super().__init__()
-        self.x_current = x_current
+        self.x_current = x_current.reshape(1,1)
         self.u = u_i
-        self.x_later = x_later 
-        self.x_previous = x_previous 
+        self.x_later = x_later.reshape(1,1) if x_later!=None else None
+        self.x_previous = x_previous.reshape(1,1) if x_previous!=None else None
         
         self.update_layers()
         
@@ -61,12 +60,10 @@ class Node_Shape_Function_Net(nn.Module):
             ascending_layer3.requires_grad_(False)
 
         # 2. Constructing the output layer (displacement)
-        w_45_11 = self.u
-        w_45_21 = self.u
-        print(self.u)
+        w_45_11 = self.u.reshape(1,1)
+        w_45_21 = self.u.reshape(1,1)
         self.output_layer = nn.Linear(2,1, bias=False)
-        self.output_layer.weight = nn.Parameter(torch.cat([w_45_11, w_45_21], -1))
-        print(self.output_layer.weight)
+        self.output_layer.weight = nn.Parameter(torch.cat([w_45_11, w_45_21], 1))
         self.output_layer.requires_grad_(False)
         
         # 3. Assembling the ascent and descent layers
@@ -93,7 +90,6 @@ class Node_Shape_Function_Net(nn.Module):
             self.descendingLayers = -1     
     
     def forward(self, dom):
-        dom = tensor(np.array([dom]), dtype=torch.float64).reshape((-1,1))
         if self.ascendingLayers == -1:
             out_ascending = torch.zeros_like(dom)
         else:
