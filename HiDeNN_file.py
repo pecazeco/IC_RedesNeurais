@@ -1,9 +1,7 @@
 from torch import tensor
-import numpy as np
+from numpy import linspace
 import torch
-from numpy.linalg import inv
-from scipy.integrate import trapezoid as integrate
-from numpy import diff
+from torch.linalg import solve
 from torch import nn
 import matplotlib.pyplot as plt
 import importlib
@@ -11,6 +9,11 @@ import Node_Net_File
 importlib.reload(Node_Net_File)
 from Node_Net_File import Node_Shape_Function_Net
 
+def diff(y, dx):
+    dydx = torch.zeros(len(y)-1)
+    for i in range(len(y)-1):
+        dydx[i] = (y[i+1]-y[i]) / dx
+    return dydx
 
 class HiDeNN_for_FEM():
     def __init__(self, dom, num_nodes, equation, boundary_conditions=[0,0]):
@@ -21,7 +24,7 @@ class HiDeNN_for_FEM():
         self.dom = dom
         self.dom_end = dom[-1]
         self.dom_start = dom[0]
-        self.nodes = tensor(np.linspace(self.dom_start, self.dom_end, num_nodes), requires_grad=True)
+        self.nodes = tensor(linspace(self.dom_start, self.dom_end, num_nodes), requires_grad=True)
         self.u_1 = boundary_conditions[0]
         self.u_n = boundary_conditions[1]
         self.dx = (self.dom_end-self.dom_start)/len(dom)
@@ -33,37 +36,41 @@ class HiDeNN_for_FEM():
         self.b = equation[2]
         self.f_func = lambda x_v: list(map(equation[3], x_v))
         
-        self.shape_func_arr = self.node_nets_func( u_arr=[1 for i in range(num_nodes)] )
+        self.shape_func_arr = self.node_nets_func( torch.ones((self.num_nodes,1)) )
         # self.shape_func_arr = torch.stack(self.shape_func_arr).detach().numpy().reshape(num_nodes, -1)
         
         #### Calculating initial F and K for initial u's #### 
         
-        self.__F = [integrate(shape*self.f_func(dom), dx=self.dx) for shape in self.shape_func_arr.numpy()[1:-1]]
-        self.__K = np.zeros((num_nodes, num_nodes))
+        self.__F = torch.trapz( tensor(self.f_func(dom)) * self.shape_func_arr, dx=self.dx ) 
+        self.__K = torch.zeros((num_nodes, num_nodes), dtype=torch.float64)
         for i,func_i in enumerate(self.shape_func_arr):
             for j,func_j in enumerate(self.shape_func_arr):
-                df_i = tensor(diff(func_i)/self.dx)
-                df_j = tensor(diff(func_j)/self.dx)
+                
+                df_i = diff(func_i, self.dx)
+                df_j = diff(func_j, self.dx)
+                
                 integrand = self.k * ( df_i * df_j ) + self.c * ( df_i * func_j[1:] ) + self.b * ( func_i[1:] * func_j[1:] )
-                self.__K[i, j] = integrate(integrand, dx=self.dx).reshape(-1)
+                self.__K[i, j] = torch.trapz(integrand, dx=self.dx).reshape(-1)
 
         # Using the approach of strong condition (big number) - Computationally gives the same result as the theoretically correct way
         # https://scicomp.stackexchange.com/questions/20515/how-to-efficiently-implement-dirichlet-boundary-conditions-in-global-sparse-fini
-        BigNumber = 10e64
-        self.__F = np.append( BigNumber * self.u_1 , self.__F )
-        self.__F = np.append( self.__F, BigNumber * self.u_n )
+        BigNumber = 10e10
+        #self.__F = torch.cat( ( tensor([BigNumber * self.u_1]), self.__F ) )
+        self.__F[0] = BigNumber * self.u_1
+        #self.__F = torch.cat( ( self.__F, tensor([BigNumber * self.u_n]) ) )
+        self.__F[-1] = BigNumber * self.u_n
         self.__K[0,0] = BigNumber
         self.__K[-1,-1] = BigNumber
         
         ### Calculating initial displacements and aprox u ### 
-        self.displacement_arr = tensor(inv(self.__K) @ self.__F) # alpha = K^-1 x F
+        self.displacement_arr = solve(self.__K, self.__F) # alpha = K^-1 x F
         self.u_aprox_arr = self.displacement_arr @ self.shape_func_arr
         
         self.node_nets_arr = self.node_nets_func( self.displacement_arr )    
         
     def forward(self):
         self.node_nets_arr = self.node_nets_func( self.displacement_arr )
-        self.shape_func_arr = self.node_nets_func([1 for i in range(self.num_nodes)])
+        self.shape_func_arr = self.node_nets_func( torch.ones((self.num_nodes,1)) )
         
         output_layer = nn.Linear(self.num_nodes, 1, bias=False)
         output_layer.weight = nn.Parameter(torch.ones_like(output_layer.weight, dtype=torch.float64))
@@ -104,30 +111,35 @@ class HiDeNN_for_FEM():
      
     def update_node_nets(self):
         self.node_nets_arr = self.node_nets_func( self.displacement_arr )
-        self.shape_func_arr = self.node_nets_func( [1 for i in range(self.num_nodes)] )
+        self.shape_func_arr = self.node_nets_func( torch.ones((self.num_nodes,1)) )
     
     @property
     def K(self):
-        self.__K = np.zeros((self.num_nodes, self.num_nodes))
+        self.__K = torch.zeros((self.num_nodes, self.num_nodes), dtype=torch.float64)
         for i,func_i in enumerate(self.shape_func_arr):
             for j,func_j in enumerate(self.shape_func_arr):
-                df_i = tensor(diff(func_i)/self.dx)
-                df_j = tensor(diff(func_j)/self.dx)
+                
+                df_i = diff(func_i, self.dx)
+                df_j = diff(func_j, self.dx)
+                    
                 integrand = self.k * ( df_i * df_j ) + self.c * ( df_i * func_j[1:] ) + self.b * ( func_i[1:] * func_j[1:] )
-                self.__K[i, j] = integrate(integrand, dx=self.dx).reshape(-1)
+                self.__K[i, j] = torch.trapz(integrand, dx=self.dx).reshape(-1)
 
-        BigNumber = 10e64
+        BigNumber = 10e10
         self.__K[0,0] = BigNumber
         self.__K[-1,-1] = BigNumber
         return self.__K
     
     @property
     def F(self):
-        self.__F = [integrate( shape * tensor(self.f_func(self.dom)), dx=self.dx ) for shape in self.shape_func_arr[1:-1]]
+        self.__F = torch.trapz( tensor(self.f_func(self.dom)) * self.shape_func_arr, dx=self.dx ) 
+        # self.__F = [integrate( shape * tensor(self.f_func(self.dom)), dx=self.dx ) for shape in self.shape_func_arr[1:-1]]
 
-        BigNumber = 10e64
-        self.__F = np.append( BigNumber * self.u_1 , self.__F )
-        self.__F = np.append( self.__F, BigNumber * self.u_n )
+        BigNumber = 10e10
+        #self.__F = torch.cat( ( tensor([BigNumber * self.u_1]), self.__F ) )
+        self.__F[0] = BigNumber * self.u_1
+        #self.__F = torch.cat( ( self.__F, tensor([BigNumber * self.u_n]) ) )
+        self.__F[-1] = BigNumber * self.u_n
         return self.__F
         
     def plot_shape_functions(self):
@@ -157,15 +169,8 @@ class HiDeNN_for_FEM():
             u = self.forward().reshape(-1)
             # print('u', u)   
             
-            dudx = torch.zeros(len(self.dom)-1)
-            for i in range(len(self.dom)-1):
-                dudx[i] = (u[i+1]-u[i]) / self.dx
-            # print('dudx', dudx)
-            
-            ddudx2 = torch.zeros(len(self.dom)-2)
-            for i in range(self.num_nodes-2):
-                ddudx2[i] = (dudx[i+1]-dudx[i]) / self.dx
-            # print('ddudx2', ddudx2)
+            dudx = diff(u, self.dx)
+            ddudx2 = diff(dudx, self.dx)
             
             self.optimizer = torch.optim.SGD([self.nodes], lr=lr)
             self.optimizer.zero_grad()
@@ -176,10 +181,11 @@ class HiDeNN_for_FEM():
             loss.backward(retain_graph=True)
             self.optimizer.step()
             
-            self.shape_func_arr = self.node_nets_func([1 for i in range(self.num_nodes)])
+            self.shape_func_arr = self.node_nets_func(tensor([[1 for i in range(self.num_nodes)]]))
             
             ### Calculating initial displacements and aprox u ### 
-            self.displacement_arr = tensor(inv(self.K) @ self.F) # alpha = K^-1 x F
+            self.displacement_arr = solve(self.K,self.F) # alpha = K^-1 x F
+            print('displac', type(self.displacement_arr))
             self.u_aprox_arr = self.displacement_arr @ self.shape_func_arr
             
             self.node_nets_arr = self.node_nets_func(self.displacement_arr)
