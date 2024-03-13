@@ -1,0 +1,253 @@
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openany,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,				% para impressão em verso e anverso. Oposto a oneside
+	openright, 
+    a4paper,				% tamanho do papel. 
+	article,
+	% -- opções da classe abntex2 --
+	%chapter=Title,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,			% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,		% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,	% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,			% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil			% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}			% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}			% Indenta o primeiro parágrafo de cada seção.
+\usepackage[table,dvipsnames]{xcolor}				% Controle das cores
+\usepackage{graphicx}				% para lidar com gráficos
+\graphicspath{{./Figuras/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.jpg,.png}
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{alphalph}
+\usepackage{xfrac}
+\usepackage{epigraph}
+% ---
+
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	% Paginas com as citações na bibl
+%\usepackage[alf,abnt-etal-list=0,abnt-etal-cite=3,bibjustif,abnt-thesis-year=both]{abntex2cite}					% Citações padrão ABNT
+\usepackage[alf,abnt-repeated-title-omit=yes,abnt-emphasize=bf,abnt-etal-list=0]{abntex2cite}
+\usepackage{IEEEtrantools}
+%\begin{IEEEeqnarray}{rCl}
+%	z(t) & = & 0  \\
+%	t_i(t) & = & 0
+%\end{IEEEeqnarray}
+
+% *** ALIGNMENT PACKAGES ***
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Configurações do pacote siunitx
+\sisetup{
+   output-decimal-marker = {,} ,
+   group-separator = {.}
+}
+% ---
+% Configurações do pacote subcaption
+%\renewcommand\thesubfigure{(\alph{subfigure})}
+\renewcommand*{\thesubfigure}{(\alphalph{\value{subfigure}})}
+% ---
+
+% Configurações do pacote epigraph
+\setlength{\epigraphrule}{0pt}
+
+% ---
+% Definições de comandos
+% ---
+\newcommand{\myVec}[1]{\bm{#1}}
+\newcommand{\myHat}[1]{\hat{\bm{#1}}}
+\newcommand{\myMatrix}[1]{\bm{\mathit{#1}}}
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\tabLabel}[1]{\multicolumn{1}{c}{\textbf{#1}}}
+\newcommand{\tabLabelMrow}[2]{\multicolumn{1}{c}{\multirow{#1}{*}{\textbf{#2}}}}
+\newcommand{\rowSpace}[1]{\renewcommand{\arraystretch}{#1}}
+\newcommand{\minitab}[2][c]{\begin{tabular}{#1}#2\end{tabular}}
+
+\newlist{sumariotese}{enumerate}{4}
+\setlist[sumariotese,1]{label=\arabic*}
+\setlist[sumariotese,2]{label=\arabic{sumariotesei}.\arabic*}
+\setlist[sumariotese,3]{label=\arabic{sumariotesei}.\arabic{sumarioteseii}.\arabic*}
+\setlist[sumariotese,4]{label=\arabic{sumariotesei}.\arabic{sumarioteseii}.\arabic{sumarioteseiii}.\arabic*}
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Estudo e implementação de redes neurais hierárquicas de aprendizado profundo para cálculo de interpolações em elementos finitos}
+\autor{Pedro Azevedo Coelho Carriello Corrêa}
+\local{São Carlos, SP}
+\data{Março, 2024}
+\orientador{Dr. Pablo Giovanni Silva Carvalho}
+%\coorientador{Equipe \abnTeX}
+\instituicao{Escola de Engenharia de São Carlos}
+\tipotrabalho{Relatório de PIBIC}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+%\preambulo{Relatório de Projeto de Iniciação Científica para cumprir com os requisitos estabelecidos no Edital 081/2019-PROPESP/UFAM do Programa Institucional de Bolsas de Iniciação Científica da Universidade Federal do Amazonas.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	pdfcreator={LaTeX with abnTeX2},
+	%pdfkeywords={ufam}{ft}{engenharia mecânica}{mecânica do contínuo}, 
+	colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        		% color of links to bibliography
+    	filecolor=black,      		% color of file links
+	urlcolor=black,
+	bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espessura das bordas das tabelas
+\setlength\heavyrulewidth{0.12em}
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% NEW COMMANDS
+\providecommand{\en}[1]{\ensuremath{\textrm{\textsc{e}-}{#1}}}
+\providecommand{\ep}[1]{\ensuremath{\textrm{\textsc{e}}{#1}}}
+
+\renewcommand{\imprimircapa}{
+	\begin{capa}
+		\begin{center}
+		\begin{tabular}{L{0.25\textwidth}C{0.5\textwidth}R{0.25\textwidth}}
+			\multirow{3}{*}{\includegraphics[width=0.25\textwidth]{./figures/Logo-CNPq.png}} &
+			{\large\ABNTEXchapterfont UNIVERSIDADE DE SÃO PAULO} \vspace*{0.2cm} & 
+            \multirow{3}{*}{\includegraphics[width=0.25\textwidth]{./figures/Logo-EESC.png}} \\
+			& {\large\ABNTEXchapterfont ESCOLA DE ENGENHARIA DE SÃO CARLOS} \vspace*{0.2cm} & \\
+		\end{tabular}
+		\\[0.5cm]
+		%\includegraphics[width=3cm]{./figures/Logo-EESC.png} \\
+		{\large Programa Institucional de Bolsas de Iniciação Científica (PIBIC)} \\[4cm]
+		{\bfseries\ABNTEXchapterfont\LARGE\MakeUppercase Relatório Parcial} \\[1cm]
+		{\bfseries\ABNTEXchapterfont\LARGE\imprimirtitulo} \\[4.5cm]
+		{\large\ABNTEXchapterfont Autor: \imprimirautor} \\
+        {\large\ABNTEXchapterfont Orientador: \imprimirorientador}
+		\vfill
+		{\large\ABNTEXchapterfont\imprimirlocal} \\[0.2cm]
+		{\large\ABNTEXchapterfont\imprimirdata}
+		\vspace*{1cm}
+		\end{center}
+	\end{capa}
+}
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+%\imprimirfolhaderosto*
+
+\textual
+
+\include{pages/introducao}
+\include{pages/atividades}
+\include{pages/resultados}
+\include{pages/proximas_etapas}
+
+\postextual
+
+\bibliography{referencias.bib}
+
+\end{document}

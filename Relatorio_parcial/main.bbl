@@ -1,0 +1,63 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Becker e {etc.} 1981]{Becker1981-dz}
+\abntrefinfo{Becker e {etc.}}{BECKER; {etc.}}{1981}
+{BECKER, E.~B.; {etc.} \textbf{Finite Elements: v. 1: An Introduction}. Harlow,
+  England: Longman Higher Education, 1981.}
+
+\bibitem[Langtangen e Linge 2017]{Langtangen2017-pd}
+\abntrefinfo{Langtangen e Linge}{LANGTANGEN; LINGE}{2017}
+{LANGTANGEN, H.~P.; LINGE, S. \textbf{Finite difference computing with {PDEs}:
+  A modern software approach}. 1. ed. Basel, Switzerland: Springer
+  International Publishing, 2017.}
+
+\bibitem[Le-Duc, Nguyen-Xuan e Lee 2023]{Le-Duc2023-ly}
+\abntrefinfo{Le-Duc, Nguyen-Xuan e Lee}{LE-DUC; NGUYEN-XUAN; LEE}{2023}
+{LE-DUC, T.; NGUYEN-XUAN, H.; LEE, J. A finite-element-informed neural network
+  for parametric simulation in structural mechanics.
+\textbf{Finite Elem. Anal. Des.}, v.~217, n. 103904, p. 103904, 2023.}
+
+\bibitem[Meethal et al. 2023]{Meethal2023-ag}
+\abntrefinfo{Meethal et al.}{MEETHAL et al.}{2023}
+{MEETHAL, R.~E.; KODAKKAL, A.; KHALIL, M.; GHANTASALA, A.; OBST, B.;
+  BLETZINGER, K.-U.; W{\"U}CHNER, R. Finite element method-enhanced neural
+  network for forward and inverse problems.
+\textbf{Adv. Model. Simul. Eng. Sci.}, v.~10, n.~1, 2023.}
+
+\bibitem[Pantidis e Mobasher 2023]{Pantidis2023-vh}
+\abntrefinfo{Pantidis e Mobasher}{PANTIDIS; MOBASHER}{2023}
+{PANTIDIS, P.; MOBASHER, M.~E. Integrated finite element neural network
+  ({I-FENN}) for non-local continuum damage mechanics.
+\textbf{Comput. Methods Appl. Mech. Eng.}, v.~404, n. 115766, p. 115766, 2023.}
+
+\bibitem[Sharma et al. 2023]{Sharma2023-fr}
+\abntrefinfo{Sharma et al.}{SHARMA et al.}{2023}
+{SHARMA, P.; CHUNG, W.~T.; AKOUSH, B.; IHME, M. A review of physics-informed
+  machine learning in fluid mechanics.
+\textbf{Energies}, v.~16, n.~5, p.~2343, 2023.}
+
+\bibitem[Shi et al. 2020]{Shi2020-wm}
+\abntrefinfo{Shi et al.}{SHI et al.}{2020}
+{SHI, Z.; GULGEC, N.~S.; BERAHAS, A.~S.; PAKZAD, S.~N.; TAKAC, M. Finite
+  difference neural networks: Fast prediction of partial differential
+  equations. In:  \textbf{2020 19th {IEEE} International Conference on Machine
+  Learning and Applications ({ICMLA})}. [S.l.]: IEEE, 2020. p. 130--135.}
+
+\bibitem[Thom{\'e}e 1984]{Thomee1984-sc}
+\abntrefinfo{Thom{\'e}e}{THOM{\'E}E}{1984}
+{THOM{\'E}E, V. The finite difference versus the finite element method for the
+  solution of boundary value problems.
+\textbf{Bull. Aust. Math. Soc.}, v.~29, n.~2, p. 267--288, 1984.}
+
+\bibitem[Tu e Nguyen 2022]{Tu2022-hk}
+\abntrefinfo{Tu e Nguyen}{TU; NGUYEN}{2022}
+{TU, S. N.~T.; NGUYEN, T. {FinNet}: Solving time-independent differential
+  equations with finite difference neural network.
+2022.}
+
+\end{thebibliography}
