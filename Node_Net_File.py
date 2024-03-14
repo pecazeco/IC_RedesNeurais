@@ -78,5 +78,6 @@ class Node_Shape_Function_Net(nn.Module):
         print(out.grad_fn, 'out grad')
         print(out.is_leaf, 'out')
         
-        return (out, out.grad_fn.data)
+        #return (out, out.grad_fn.data)
+        return out
         

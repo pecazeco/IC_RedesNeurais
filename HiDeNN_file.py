@@ -172,7 +172,8 @@ class HiDeNN_for_FEM:
     def train(self, epochs=1, lossfunc=nn.MSELoss(), lr=1e-3):        
         for epoch in range(epochs):
             # -k * u''(x) + c * u'(x) + b * u(x) = f(x)
-            u = self.forward().reshape(-1)
+            #u = self.forward().reshape(-1)
+            u = self.u_aprox_arr
             
             dudx = diff(u, self.dx)
             ddudx2 = diff(dudx, self.dx)
@@ -189,6 +190,7 @@ class HiDeNN_for_FEM:
             self.shape_func_arr = self.node_nets_func(torch.ones((self.num_nodes,1), dtype=torch.float64))
             
             ### Calculating initial displacements and aprox u ### 
+            print(self.K)
             self.displacement_arr = solve(self.K,self.F) # alpha = K^-1 x F
             self.u_aprox_arr = self.displacement_arr @ self.shape_func_arr
             
