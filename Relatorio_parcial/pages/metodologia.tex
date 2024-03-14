@@ -1,0 +1,97 @@
+\section{Metodologia}
+
+Os principais modelos de redes neurais e métodos de aprendizado de máquina foram estudados pelo aluno por meio do curso das disciplinas SCC0230 - Inteligência Artificial e SCC0270 - Redes Neurais e Aprendizado Profundo, ministradas, respectivamente, pela Prof. Solange Oliveira Rezende e Prof. Moacir Antonelli Ponti.
+Já o método de elementos finitos foi estudado principalmente a partir da leitura de \citeonline{Becker1981-dz}. 
+
+Já a implementação do algoritmo está sendo em \texttt{Python}, principalmente através do uso da biblioteca \texttt{PyTorch}. Também estão sendo utilizadas outras bibliotecas auxiliares, como a \texttt{MatPlotLib} e \texttt{NumPy}.
+
+\subsection{Redes Neurais \textit{Multi-Layer Perceptron}}
+
+Redes neurais de aprendizado profundo são redes que conseguem, em grande parte, superar limitações de modelos lineares \textit{perceptron} incorporando mais camadas. 
+A forma mais natural de fazer isso é alocando camadas conectadas em seguida, de forma que cada camada anterior alimenta a próxima, até gerar a saída do modelo. 
+Essa arquitetura é chamada \textit{multilayer perceptron} (MLP) \cite{Zhang2021-od}.
+
+No geral, redes desse tipo são modelos de aprendizado supervisionado, ou seja, que são treinados a partir de um banco de dados de entradas e suas respectivas saídas esperadas. 
+Porém, nesse projeto foi feita uma modificação em relação ao modelo \textit{perceptron} original, na qual a função de perda (\textit{Loss Function}) utilizada para treinar o modelo não é calculada a partir de um banco de dados, mas sim, recalculando a nova solução em elementos finitos considerando as novas posições dos nós dadas pela rede e retornando o seu erro na equação original. 
+Tal abordagem é mais explicada na Seção \ref{sec:calculo_da_perda}.
+
+\subsection{Método de Elementos Finitos}
+
+Atualmente, a equação genérica governante no domínio $ x_0 < x < x_L $ que o algoritmo em desenvolvimento resolveria numericamente tem a seguinte forma:
+
+\begin{equation}
+    -k \frac{\mathrm{d} u(x)^2 }{ \mathrm{d}^2 x} + c \frac{\mathrm{d} u(x)}{\mathrm{d} x} + b u(x) = f(x)
+    \label{eq:equacao_generica}
+\end{equation}
+
+Onde $k$, $c$ e $b$ são coeficientes fixos e $f(x)$ uma função de $x$ dados pela equação que se queira resolver. 
+Considerando condição de borda de Dirichlet onde $u(x_0)=u_0$ e $u(x_L)=u_L$, e $v(x)$ uma função de teste definida em todo o intervalo, pode-se analisar a Equação \ref{eq:equacao_generica} pelo ponto de vista do método de elementos finitos e reescrevê-la na forma variacional:
+
+\begin{equation}
+    \int_{x_0}^{x_L} ( ku' v' + cu' v + buv ) \mathrm{d}x = \int_{x_0}^{x_L} (fv) \mathrm{d}x
+    \label{eq:equacao_generica_variacional}
+\end{equation}
+
+Nesse contexto, $v$ e $u$ para satisfazerem corretamente o enunciado devem pertencer ao subespaço $H^1$, que são as funções cujas integrais da Equação \ref{eq:def_H1} convergem. 
+
+\begin{equation}
+    \int_{x_0}^{x_L} \left[ (v')^2 + v^2 \right] \mathrm{d} x < + \infty
+    \label{eq:def_H1}
+\end{equation}
+
+Dividi-se, arbitrariamente, o domínio do problema em $N$ elementos finitos com $h$ de comprimento. 
+Após isso, são construídas uma função de forma $\phi_i$ para cada elemento e que geram uma base para o subespaço $H^h$ de $H^1$: 
+$\{ \phi_1, \phi_2, \dots , \phi_N \}$.
+
+Assim, procura-se uma função $u_h \in H_h$ que pode ser escrita como:
+
+\begin{equation}
+    u_h(x) = \sum_{j=1}^{N} \alpha_j \phi_j(x)
+    \label{eq:def_u_h}
+\end{equation}
+
+Escrevendo $v_h$ da mesma forma e substituindo na Equação \ref{eq:equacao_generica_variacional}, temos:
+
+\begin{equation*}
+    \int_{x_0}^{x_L} ( k u_h' v_h' + c u_h' v_h + b u_h v_h ) \mathrm{d} x = \int_{x_0}^{x_l} (fv_h) \mathrm{d} x
+\end{equation*}
+
+Equivalentemente:
+
+\begin{equation}
+    \sum_{j=1}^{N} K_{ij} \alpha_j = F_i, \quad i=1,2, \dots N
+    \label{eq:K*alpha=F}
+\end{equation}
+
+Sendo $K$ comumente chamada de matriz de rigidez e $F$, de vetor de carga.  
+
+\begin{align}
+    K_{ij} &= \int_{x_0}^{x_L} ( k \phi_i' \phi_j' + c \phi_i' \phi_j + b \phi_i \phi_j ) \mathrm{d} x \\
+    F_i &= \int_{x_0}^{x_L} ( f \phi_i ) \mathrm{d} x
+\end{align}
+
+Com $1 \leq i,j \leq N$. 
+
+Após resolver a Equação \ref*{eq:K*alpha=F} para os coeficientes $\alpha_i$, utilizamos a Equação \ref*{eq:def_u_h} para obter a aproximação de Galerkin para o problema. Todo esse processo está descrito em \citeonline{Becker1981-chapter2}.
+
+Atualmente, o código do projeto utiliza esse procedimento para encontrar a primeira iteração da aproximação da solução e, após o treinamento da rede, a ideia era que os nós se deslocassem para posições mais convenientes e as matrizes $K$ e $F$ fossem recalculadas considerando as novas funções de forma dos nós.
+Porém, estão ocorrendo problemas com a implementação do código com a biblioteca \texttt{PyTorch} e os nós ainda não se delocam.
+
+Algo interessante é que há infinitas possibilidades de escolhas para a função utilizada como $\phi_i$, o que torna esse método bastante flexível. 
+Até então, o modelo apenas trabalha com uma função de forma linear, mas há trabalho para futuramente adicionar também a opção de aproximações quadráticas.
+
+A função de forma linear é definida de acordo com a Equação \ref{eq:def_linear_funcaoforma}, considerando $h_i$ o tamanho de cada elemento finito, que agora pode ser variável.
+
+\begin{equation}
+    \phi_i(x)= 
+    \begin{dcases}
+        \frac{x-x_i}{h_i}, \quad & \text{para } x_{i-1} \leq x \leq x_i \\
+        \frac{x_{i+1}-x}{h_{i+1}}, \quad & \text{para } x_{i} \leq x \leq x_{i+1} \\
+        0, \quad & \text{para } x \leq x_{i-1} \text{e } x \geq x_{i+1}
+    \end{dcases}
+\label{eq:def_linear_funcaoforma}
+\end{equation}
+
+\subsection{Redes Neurais de Aprendizado Profundo Hierárquicas (HiDeNN)} 
+
+\subsection{Cálculo da perda para treinamento do modelo} \label{sec:calculo_da_perda}

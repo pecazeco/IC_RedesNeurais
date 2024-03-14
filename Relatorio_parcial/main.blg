@@ -1,10 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
-A level-1 auxiliary file: pages/introducao.aux
-A level-1 auxiliary file: pages/atividades.aux
-A level-1 auxiliary file: pages/resultados.aux
-A level-1 auxiliary file: pages/proximas_etapas.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -26,44 +22,44 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 13 entries,
+You've used 17 entries,
             6714 wiz_defined-function locations,
-            1268 strings with 11287 characters,
-and the built_in function-call counts, 9846 in all, are:
-= -- 823
-> -- 364
-< -- 22
-+ -- 192
-- -- 107
-* -- 694
-:= -- 1299
-add.period$ -- 30
-call.type$ -- 13
-change.case$ -- 129
-chr.to.int$ -- 32
-cite$ -- 9
-duplicate$ -- 482
-empty$ -- 694
-format.name$ -- 534
-if$ -- 2376
-int.to.chr$ -- 3
+            1286 strings with 11969 characters,
+and the built_in function-call counts, 14328 in all, are:
+= -- 1121
+> -- 589
+< -- 31
++ -- 288
+- -- 170
+* -- 1061
+:= -- 1856
+add.period$ -- 43
+call.type$ -- 17
+change.case$ -- 198
+chr.to.int$ -- 40
+cite$ -- 13
+duplicate$ -- 724
+empty$ -- 953
+format.name$ -- 883
+if$ -- 3426
+int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 215
-newline$ -- 50
-num.names$ -- 45
-pop$ -- 274
+missing$ -- 306
+newline$ -- 69
+num.names$ -- 65
+pop$ -- 394
 preamble$ -- 1
-purify$ -- 51
+purify$ -- 70
 quote$ -- 0
-skip$ -- 630
+skip$ -- 856
 stack$ -- 1
-substring$ -- 322
-swap$ -- 222
-text.length$ -- 15
+substring$ -- 464
+swap$ -- 352
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 1
 warning$ -- 0
-while$ -- 65
+while$ -- 95
 width$ -- 0
-write$ -- 150
+write$ -- 213

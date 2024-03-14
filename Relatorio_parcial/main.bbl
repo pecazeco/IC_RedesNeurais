@@ -6,9 +6,14 @@
 \abntbstabout{v-1.9.7 }
 
 \bibitem[Becker e {etc.} 1981]{Becker1981-dz}
-\abntrefinfo{Becker e {etc.}}{BECKER; {etc.}}{1981}
+\abntrefinfo{Becker e {etc.}}{BECKER; {etc.}}{1981a}
 {BECKER, E.~B.; {etc.} \textbf{Finite Elements: v. 1: An Introduction}. Harlow,
   England: Longman Higher Education, 1981.}
+
+\bibitem[Becker e {etc.} 1981]{Becker1981-chapter2}
+\abntrefinfo{Becker e {etc.}}{BECKER; {etc.}}{1981b}
+{\underline{\ \ \ \ \ \ \ \ }. \underline{\ \ \ \ \ \ \ \ }. Harlow, England:
+  Longman Higher Education, 1981. 40-59~p.}
 
 \bibitem[Langtangen e Linge 2017]{Langtangen2017-pd}
 \abntrefinfo{Langtangen e Linge}{LANGTANGEN; LINGE}{2017}
@@ -35,6 +40,14 @@
   ({I-FENN}) for non-local continuum damage mechanics.
 \textbf{Comput. Methods Appl. Mech. Eng.}, v.~404, n. 115766, p. 115766, 2023.}
 
+\bibitem[Saha et al. 2021]{Saha2021-kw}
+\abntrefinfo{Saha et al.}{SAHA et al.}{2021}
+{SAHA, S.; GAN, Z.; CHENG, L.; GAO, J.; KAFKA, O.~L.; XIE, X.; LI, H.; TAJDARI,
+  M.; KIM, H.~A.; LIU, W.~K. Hierarchical deep learning neural network
+  ({HiDeNN)}: An artificial intelligence ({AI}) framework for computational
+  science and engineering.
+\textbf{Comput. Methods Appl. Mech. Eng.}, v.~373, n. 113452, p. 113452, 2021.}
+
 \bibitem[Sharma et al. 2023]{Sharma2023-fr}
 \abntrefinfo{Sharma et al.}{SHARMA et al.}{2023}
 {SHARMA, P.; CHUNG, W.~T.; AKOUSH, B.; IHME, M. A review of physics-informed
@@ -59,5 +72,17 @@
 {TU, S. N.~T.; NGUYEN, T. {FinNet}: Solving time-independent differential
   equations with finite difference neural network.
 2022.}
+
+\bibitem[Zhang et al. 2021]{Zhang2021-od}
+\abntrefinfo{Zhang et al.}{ZHANG et al.}{2021a}
+{ZHANG, A.; LIPTON, Z.~C.; LI, M.; SMOLA, A.~J. Dive into deep learning.
+p. 170--186, 2021.}
+
+\bibitem[Zhang et al. 2021]{Zhang2021-ln}
+\abntrefinfo{Zhang et al.}{ZHANG et al.}{2021b}
+{ZHANG, L.; CHENG, L.; LI, H.; GAO, J.; YU, C.; DOMEL, R.; YANG, Y.; TANG, S.;
+  LIU, W.~K. Hierarchical deep-learning neural networks: finite elements and
+  beyond.
+\textbf{Comput. Mech.}, v.~67, n.~1, p. 207--230, 2021.}
 
 \end{thebibliography}

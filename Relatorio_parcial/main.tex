@@ -32,6 +32,7 @@
 \DeclareGraphicsExtensions{.pdf,.jpeg,.jpg,.png}
 \usepackage{microtype} 			% para melhorias de justificação
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{bm}
 \usepackage{enumitem}
@@ -78,18 +79,11 @@
 % ---
 % Configurações do pacote backref
 % Usado sem a opção hyperpageref de backref
-\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+\renewcommand{\backrefpagesname}{}
 % Texto padrão antes do número das páginas
 \renewcommand{\backref}{}
 % Define os textos da citação
-\renewcommand*{\backrefalt}[4]{
-	\ifcase #1 %
-		Nenhuma citação no texto.%
-	\or
-		Citado na página #2.%
-	\else
-		Citado #1 vezes nas páginas #2.%
-	\fi}%
+\renewcommand*{\backrefalt}[4]{}%
 % ---
 
 % ---
@@ -241,10 +235,12 @@
 
 \textual
 
-\include{pages/introducao}
-\include{pages/atividades}
-\include{pages/resultados}
-\include{pages/proximas_etapas}
+\input{pages/introducao}
+\input{pages/objetivos}
+\input{pages/metodologia}
+\input{pages/atividades}
+\input{pages/resultados}
+\input{pages/proximas_etapas}
 
 \postextual
 

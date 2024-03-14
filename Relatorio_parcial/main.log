@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.11)  13 MAR 2024 01:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.11)  14 MAR 2024 01:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -739,6 +739,22 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks36
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2021/02/02 v1.28 mathematical typesetting tools
+ (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count361
+\l_MT_multwidth_dim=\dimen267
+\origjot=\skip263
+\l_MT_shortvdotswithinadjustabove_dim=\dimen268
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen269
+\l_MT_above_intertext_sep=\dimen270
+\l_MT_below_intertext_sep=\dimen271
+\l_MT_above_shortintertext_sep=\dimen272
+\l_MT_below_shortintertext_sep=\dimen273
+\xmathstrut@box=\box59
+\xmathstrut@dim=\dimen274
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
@@ -757,90 +773,90 @@ Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 ) (/usr/share/texlive/texmf-dist/tex/latex/siunitx/siunitx.sty
 Package: siunitx 2022-02-02 v3.0.46 A comprehensive (SI) units package
-\l__siunitx_angle_tmp_dim=\dimen267
-\l__siunitx_angle_marker_box=\box59
-\l__siunitx_angle_unit_box=\box60
-\l__siunitx_compound_count_int=\count361
+\l__siunitx_angle_tmp_dim=\dimen275
+\l__siunitx_angle_marker_box=\box60
+\l__siunitx_angle_unit_box=\box61
+\l__siunitx_compound_count_int=\count362
  (/usr/share/texlive/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/01/04 v1.11 internationalization of LaTeX2e packages (CN)
 )
-\l__siunitx_number_exponent_fixed_int=\count362
-\l__siunitx_number_min_decimal_int=\count363
-\l__siunitx_number_min_integer_int=\count364
-\l__siunitx_number_round_precision_int=\count365
-\l__siunitx_number_group_minimum_int=\count366
-\l__siunitx_table_tmp_box=\box61
-\l__siunitx_table_tmp_dim=\dimen268
-\l__siunitx_table_column_width_dim=\dimen269
-\l__siunitx_table_integer_box=\box62
-\l__siunitx_table_decimal_box=\box63
-\l__siunitx_table_before_box=\box64
-\l__siunitx_table_after_box=\box65
-\l__siunitx_table_before_dim=\dimen270
-\l__siunitx_table_carry_dim=\dimen271
-\l__siunitx_unit_tmp_int=\count367
-\l__siunitx_unit_position_int=\count368
-\l__siunitx_unit_total_int=\count369
+\l__siunitx_number_exponent_fixed_int=\count363
+\l__siunitx_number_min_decimal_int=\count364
+\l__siunitx_number_min_integer_int=\count365
+\l__siunitx_number_round_precision_int=\count366
+\l__siunitx_number_group_minimum_int=\count367
+\l__siunitx_table_tmp_box=\box62
+\l__siunitx_table_tmp_dim=\dimen276
+\l__siunitx_table_column_width_dim=\dimen277
+\l__siunitx_table_integer_box=\box63
+\l__siunitx_table_decimal_box=\box64
+\l__siunitx_table_before_box=\box65
+\l__siunitx_table_after_box=\box66
+\l__siunitx_table_before_dim=\dimen278
+\l__siunitx_table_carry_dim=\dimen279
+\l__siunitx_unit_tmp_int=\count368
+\l__siunitx_unit_position_int=\count369
+\l__siunitx_unit_total_int=\count370
  (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2022-01-21 L3 programming layer (loader) 
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count370
-\l__pdf_internal_box=\box66
+\l__color_backend_stack_int=\count371
+\l__pdf_internal_box=\box67
 ))
 Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
 )) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip263
-\multirow@cntb=\count371
-\multirow@dima=\skip264
-\bigstrutjot=\dimen272
+\multirow@colwidth=\skip264
+\multirow@cntb=\count372
+\multirow@dima=\skip265
+\bigstrutjot=\dimen280
 ) (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen273
-\captionmargin@=\dimen274
-\captionwidth=\dimen275
-\caption@tempdima=\dimen276
-\caption@indent=\dimen277
-\caption@parindent=\dimen278
-\caption@hangindent=\dimen279
+\captionmargin=\dimen281
+\captionmargin@=\dimen282
+\captionwidth=\dimen283
+\caption@tempdima=\dimen284
+\caption@indent=\dimen285
+\caption@parindent=\dimen286
+\caption@hangindent=\dimen287
 Package caption Info: memoir document class detected.
 Package caption Info: french babel package is loaded.
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption-memoir.sto
 File: caption-memoir.sto 2020/10/10 v2.1 Adaption of the caption package to the memoir document class (AR)
 ))
-\c@caption@flags=\count372
-\c@continuedfloat=\count373
+\c@caption@flags=\count373
+\c@continuedfloat=\count374
 Package caption Info: changepage package is loaded.
-\caption@adjustwidth@hsize=\dimen280
-\caption@adjustwidth@linewidth=\dimen281
+\caption@adjustwidth@hsize=\dimen288
+\caption@adjustwidth@linewidth=\dimen289
 Package caption Info: hyperref package is loaded.
 ) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
-\c@subfigure=\count374
-\c@subtable=\count375
+\c@subfigure=\count375
+\c@subtable=\count376
 ) (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 Package: pdfpages 2022/01/29 v0.5u Insert pages of external PDF documents (AM)
  (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
-\ESO@tempdima=\dimen282
-\ESO@tempdimb=\dimen283
+\ESO@tempdima=\dimen290
+\ESO@tempdimb=\dimen291
 )
-\AM@pagewidth=\dimen284
-\AM@pageheight=\dimen285
-\AM@fboxrule=\dimen286
+\AM@pagewidth=\dimen292
+\AM@pageheight=\dimen293
+\AM@fboxrule=\dimen294
  (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
 File: pppdftex.def 2022/01/29 v0.5u Pdfpages driver for pdfTeX (AM)
 )
-\pdfpages@includegraphics@status=\count376
-\AM@pagebox=\box67
+\pdfpages@includegraphics@status=\count377
+\AM@pagebox=\box68
 \AM@global@opts=\toks37
-\AM@pagecnt=\count377
+\AM@pagecnt=\count378
 \AM@toc@title=\toks38
-\c@AM@survey=\count378
-\AM@templatesizebox=\box68
+\c@AM@survey=\count379
+\AM@templatesizebox=\box69
 ) (/usr/share/texlive/texmf-dist/tex/generic/alphalph/alphalph.sty
 Package: alphalph 2019/12/09 v2.6 Convert numbers to letters (HO)
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty (/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
@@ -849,19 +865,19 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 Package: xparse 2022-01-12 L3 Experimental document command parser
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
 Package: xtemplate 2022-01-12 L3 Experimental prototype document functions
-\l__xtemplate_tmp_dim=\dimen287
-\l__xtemplate_tmp_int=\count379
+\l__xtemplate_tmp_dim=\dimen295
+\l__xtemplate_tmp_int=\count380
 \l__xtemplate_tmp_muskip=\muskip18
-\l__xtemplate_tmp_skip=\skip265
+\l__xtemplate_tmp_skip=\skip266
 )
 Package: xfrac 2022-01-12 L3 Experimental split-level fractions
-\l__xfrac_slash_box=\box69
-\l__xfrac_tmp_box=\box70
-\l__xfrac_denominator_bot_sep_dim=\dimen288
-\l__xfrac_numerator_bot_sep_dim=\dimen289
-\l__xfrac_numerator_top_sep_dim=\dimen290
-\l__xfrac_slash_left_sep_dim=\dimen291
-\l__xfrac_slash_right_sep_dim=\dimen292
+\l__xfrac_slash_box=\box70
+\l__xfrac_tmp_box=\box71
+\l__xfrac_denominator_bot_sep_dim=\dimen296
+\l__xfrac_numerator_bot_sep_dim=\dimen297
+\l__xfrac_numerator_top_sep_dim=\dimen298
+\l__xfrac_slash_left_sep_dim=\dimen299
+\l__xfrac_slash_right_sep_dim=\dimen300
 \l__xfrac_slash_left_muskip=\muskip19
 \l__xfrac_slash_right_muskip=\muskip20
 
@@ -870,18 +886,18 @@ Package xtemplate Info: Declaring object type 'xfrac' taking 3 argument(s) on
 
 ) (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count380
-\l__lipsum_a_int=\count381
-\l__lipsum_b_int=\count382
+\g__lipsum_par_int=\count381
+\l__lipsum_a_int=\count382
+\l__lipsum_b_int=\count383
  (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/backref.sty
 Package: backref 2021/02/04 v1.41 Bibliographical back referencing
 ) (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2cite.sty
 Package: abntex2cite 2018/11/24 v-1.9.7 abnTeX2
  (/usr/share/texlive/texmf-dist/tex/latex/abntex2/abntex2abrev.sty)
-\minimumbiblabelwidth=\skip266
-\ABCIauxlen=\skip267
-\c@ABCIaux=\count383
-\c@ABCImax=\count384
+\minimumbiblabelwidth=\skip267
+\ABCIauxlen=\skip268
+\c@ABCIaux=\count384
+\c@ABCImax=\count385
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 ) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifxetex.sty
@@ -889,7 +905,7 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 ) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-\biblabelsep=\skip268
+\biblabelsep=\skip269
 LaTeX Info: Redefining \newblock on input line 591.
 LaTeX Info: Redefining \cite on input line 618.
 \ABCItoken=\toks39
@@ -898,65 +914,65 @@ Package: IEEEtrantools 2015/08/26 V1.5 by Michael Shell
 
 -- See the "IEEEtrantools_doc.txt" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/tools/
-\@IEEEtrantmpdimenA=\dimen293
-\@IEEEtrantmpdimenB=\dimen294
-\@IEEEtrantmpdimenC=\dimen295
-\@IEEEtrantmpcountA=\count385
-\@IEEEtrantmpcountB=\count386
-\@IEEEtrantmpcountC=\count387
+\@IEEEtrantmpdimenA=\dimen301
+\@IEEEtrantmpdimenB=\dimen302
+\@IEEEtrantmpdimenC=\dimen303
+\@IEEEtrantmpcountA=\count386
+\@IEEEtrantmpcountB=\count387
+\@IEEEtrantmpcountC=\count388
 \@IEEEtrantmptoksA=\toks40
-\IEEEnormaljot=\dimen296
-\IEEEquantizedlength=\dimen297
-\IEEEquantizedlengthdiff=\dimen298
-\IEEEquantizedtextheightdiff=\dimen299
-\IEEEilabelindentA=\dimen300
-\IEEEilabelindentB=\dimen301
-\IEEEilabelindent=\dimen302
-\IEEEelabelindent=\dimen303
-\IEEEdlabelindent=\dimen304
-\IEEElabelindent=\dimen305
-\IEEEiednormlabelsep=\dimen306
-\IEEEiedmathlabelsep=\dimen307
-\IEEEiedtopsep=\skip269
-\c@IEEEsubequation=\count388
-\@IEEEeqnnumcols=\count389
-\@IEEEeqncolcnt=\count390
-\@IEEEsubeqnnumrollback=\count391
-\IEEEPARstartletwidth=\dimen308
+\IEEEnormaljot=\dimen304
+\IEEEquantizedlength=\dimen305
+\IEEEquantizedlengthdiff=\dimen306
+\IEEEquantizedtextheightdiff=\dimen307
+\IEEEilabelindentA=\dimen308
+\IEEEilabelindentB=\dimen309
+\IEEEilabelindent=\dimen310
+\IEEEelabelindent=\dimen311
+\IEEEdlabelindent=\dimen312
+\IEEElabelindent=\dimen313
+\IEEEiednormlabelsep=\dimen314
+\IEEEiedmathlabelsep=\dimen315
+\IEEEiedtopsep=\skip270
+\c@IEEEsubequation=\count389
+\@IEEEeqnnumcols=\count390
+\@IEEEeqncolcnt=\count391
+\@IEEEsubeqnnumrollback=\count392
+\IEEEPARstartletwidth=\dimen316
 )
-\c@sumariotesei=\count392
-\c@sumarioteseii=\count393
-\c@sumarioteseiii=\count394
-\c@sumarioteseiv=\count395
-\enitdp@sumariotese=\count396
-Package hyperref Info: Option `colorlinks' set `true' on input line 166.
+\c@sumariotesei=\count393
+\c@sumarioteseii=\count394
+\c@sumarioteseiii=\count395
+\c@sumarioteseiv=\count396
+\enitdp@sumariotese=\count397
+Package hyperref Info: Option `colorlinks' set `true' on input line 160.
 \main@idxfile=\write4
 \openout4 = `main.idx'.
 
 
 Writing index file main.idx 
-(./main.aux (./pages/introducao.aux) (./pages/atividades.aux) (./pages/resultados.aux) (./pages/proximas_etapas.aux))
+(./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 220.
-LaTeX Font Info:    ... okay on input line 220.
-Package hyperref Info: Link coloring ON on input line 220.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 214.
+LaTeX Font Info:    ... okay on input line 214.
+Package hyperref Info: Link coloring ON on input line 214.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -964,33 +980,33 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count397
+\c@section@level=\count398
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 220.
-LaTeX Info: Redefining \ref on input line 220.
-LaTeX Info: Redefining \pageref on input line 220.
-LaTeX Info: Redefining \nameref on input line 220.
-LaTeX Info: Redefining \degres on input line 220.
-LaTeX Info: Redefining \up on input line 220.
-\myptabbox=\box71
-\myptabboxwidth=\skip270
+LaTeX Info: Redefining \nameref on input line 214.
+LaTeX Info: Redefining \ref on input line 214.
+LaTeX Info: Redefining \pageref on input line 214.
+LaTeX Info: Redefining \nameref on input line 214.
+LaTeX Info: Redefining \degres on input line 214.
+LaTeX Info: Redefining \up on input line 214.
+\myptabbox=\box72
+\myptabboxwidth=\skip271
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 220.
+(lastpage)             ! on input line 214.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count398
-\scratchdimen=\dimen309
-\scratchbox=\box72
-\nofMPsegments=\count399
-\nofMParguments=\count400
+\scratchcounter=\count399
+\scratchdimen=\dimen317
+\scratchbox=\box73
+\nofMPsegments=\count400
+\nofMParguments=\count401
 \everyMPshowfont=\toks41
-\MPscratchCnt=\count401
-\MPscratchDim=\dimen310
-\MPnumerator=\count402
-\makeMPintoPDFobject=\count403
+\MPscratchCnt=\count402
+\MPscratchDim=\dimen318
+\MPnumerator=\count403
+\makeMPintoPDFobject=\count404
 \everyMPtoPDFconversion=\toks42
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -998,18 +1014,18 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 220.
-Package microtype Info: Applying patch `item' on input line 220.
-Package microtype Info: Applying patch `toc' on input line 220.
-Package microtype Info: Applying patch `eqnum' on input line 220.
-Package microtype Info: Applying patch `footnote' on input line 220.
+LaTeX Info: Redefining \microtypecontext on input line 214.
+Package microtype Info: Applying patch `item' on input line 214.
+Package microtype Info: Applying patch `toc' on input line 214.
+Package microtype Info: Applying patch `eqnum' on input line 214.
+Package microtype Info: Applying patch `footnote' on input line 214.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 220.
+LaTeX Info: Redefining \showhyphens on input line 214.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1018,19 +1034,19 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
 ) (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-brazil.trsl
 File: translations-basic-dictionary-brazil.trsl (brazil translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `brazil'. on input line 220.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `brazil'. on input line 214.
  (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-spanish.trsl
 File: translations-basic-dictionary-spanish.trsl (spanish translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `spanish'. on input line 220.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `spanish'. on input line 214.
  (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-french.trsl
 File: translations-basic-dictionary-french.trsl (french translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `french'. on input line 220.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `french'. on input line 214.
  (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 220.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 214.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
@@ -1040,35 +1056,35 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 233.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 227.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 233.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 227.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 233.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 227.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 233.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 227.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 233.
+(Font)              <12> on input line 227.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 233.
+(Font)              <8> on input line 227.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 233.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 233.
+(Font)              <6> on input line 227.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 227.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 233.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 227.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1077,9 +1093,9 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 <./figures/Logo-CNPq.png, id=4, 555.5154pt x 171.039pt>
 File: ./figures/Logo-CNPq.png Graphic file (type png)
 <use ./figures/Logo-CNPq.png>
-Package pdftex.def Info: ./figures/Logo-CNPq.png  used on input line 233.
+Package pdftex.def Info: ./figures/Logo-CNPq.png  used on input line 227.
 (pdftex.def)             Requested size: 113.75pt x 35.02145pt.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 233.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 227.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1090,20 +1106,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 <./figures/Logo-EESC.png, id=6, 1138.2525pt x 415.0707pt>
 File: ./figures/Logo-EESC.png Graphic file (type png)
 <use ./figures/Logo-EESC.png>
-Package pdftex.def Info: ./figures/Logo-EESC.png  used on input line 233.
+Package pdftex.def Info: ./figures/Logo-EESC.png  used on input line 227.
 (pdftex.def)             Requested size: 113.75pt x 41.47783pt.
 
-Overfull \hbox (36.0pt too wide) in paragraph at lines 233--233
+Overfull \hbox (36.0pt too wide) in paragraph at lines 227--227
  [] 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/Logo-CNPq.png> <./figures/Logo-EESC.png>]
-\openout2 = `pages/introducao.aux'.
-
- (./pages/introducao.tex
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/Logo-CNPq.png> <./figures/Logo-EESC.png>] (./pages/introducao.tex
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 11.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1111,65 +1124,45 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 14.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+) (./pages/objetivos.tex) (./pages/metodologia.texpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.244 \include{pages/introducao}
-                                 [1
-
-
-
-]
-\openout2 = `pages/atividades.aux'.
-
- (./pages/atividades.tex) [2
-
+l.1 \section
+            {Metodologia} [1
 
 
 ]
-\openout2 = `pages/resultados.aux'.
-
- (./pages/resultados.tex) [3
-
-
-
-]
-\openout2 = `pages/proximas_etapas.aux'.
-
- (./pages/proximas_etapas.tex) [4
-
-
-
-] (./main.bbl (./main.brf)
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 8.
+ [2] [3]) (./pages/atividades.tex) (./pages/resultados.tex) (./pages/proximas_etapas.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4.
+ (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)) (./main.bbl (./main.brf)
 \tf@brf=\write5
 \openout5 = `main.brf'.
 
 
 bibitemlist
-) 
+[4]) 
 AED: lastpage setting LastPage
-[5
-
-
-] (./main.aux (./pages/introducao.aux) (./pages/atividades.aux) (./pages/resultados.aux) (./pages/proximas_etapas.aux))
+[5] (./main.aux)
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 96240A50D3C9886E8E96282BFDED4764;598.
+(rerunfilecheck)             Checksum: C00D4CFC0F69D83E17A4C8C67737AB9F;847.
  ) 
 Here is how much of TeX's memory you used:
- 27126 strings out of 478287
- 527593 string characters out of 5849289
- 954752 words of memory out of 5000000
- 44782 multiletter control sequences out of 15000+600000
- 527981 words of font info for 115 fonts, out of 8000000 for 9000
+ 27720 strings out of 478287
+ 536943 string characters out of 5849289
+ 967827 words of memory out of 5000000
+ 45315 multiletter control sequences out of 15000+600000
+ 536253 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,93p,1052b,904s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (6 pages, 474992 bytes).
+ 75i,15n,93p,1052b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (6 pages, 560867 bytes).
 PDF statistics:
- 156 PDF objects out of 1000 (max. 8388607)
- 126 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 33355 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 245 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 41 named destinations out of 1000 (max. 500000)
+ 39531 words of extra memory for PDF output out of 42996 (max. 10000000)
 
